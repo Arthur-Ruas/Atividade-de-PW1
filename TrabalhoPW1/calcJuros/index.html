@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cálculo de Juros</title>
+  <link rel="stylesheet" href="../bootstrap.css">
+  <script defer src="../bootstrap.bundle.min.js"></script>
+
+  <style>
+     body{
+      overflow-y: hidden;
+      background-color: #eee;
+    }
+
+    .container{
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .juros{
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .juros input, #btn{
+      width: 50vmin;
+    }
+
+    #btn{
+      transition: 0.1s;
+      border-radius: 5px;
+      border: 0;
+      transition: 0.1s;
+    }
+
+    #btn:hover{
+      transform: scale(1.05);
+      transition: 0.1s;
+    }
+
+    #btn:active{
+      transform: scale(0.95);
+      transition: 0.1s;
+    }
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+          </li>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Definições
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="../defHtmlCssJS/htmlCssJS.html">HTML, CSS e JS</a></li>
+              <li><a class="dropdown-item" href="../defC/index.html">C#</a></li>
+              <li><a class="dropdown-item" href="../defApi/index.html">Api</a></li>
+              <li><a class="dropdown-item" href="../defMerDer/index.html">MER e Der</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dinâmicos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="../validDados/index.html">Validação de Dados</a></li>
+              <li><a class="dropdown-item" href="../calcIMC/index.html">Cálculo de IMC</a></li>
+              <li><a class="dropdown-item" href="../compPrecos/index.html">Composição de Preços</a></li>
+              <li><a class="dropdown-item" href="../darkLight/index.html">Modo Claro e Escuro</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Calculo de Juros Compostos</h1>
+    <form class="juros">
+      <input class="form-control" id="valor" type="text" placeholder="Digite o Valor" required>
+      <input class="form-control" id="parcelas" type="text" placeholder="Digite o número de Parcelas" required>
+      <input class="form-control" id="taxa" type="text" placeholder="Digite a taxa de Juros" required>
+      <button type="submit" id="btn" class="btn btn-primary">Calcular</button>
+      <div>
+        <h5>Resultado:</h5>
+        <input class="form-control" id="result" type="text" readonly>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const valor = document.getElementById("valor"),
+          parcelas = document.getElementById("parcelas"),
+          taxa = document.getElementById("taxa");
+    const btn = document.getElementById("btn"),
+          output = document.querySelector("#result");
+
+    btn.addEventListener("click", () =>{
+      event.preventDefault();
+
+      if(valor.value == "" || parcelas.value == "" || taxa.value == ""){
+
+        alert("Preencha os campos!");
+      }
+
+      else{
+
+        let result = (valor.value * (1 + (taxa.value/100)) ** parcelas.value).toFixed(2);
+          output.value = result;
+      }
+      
+    })
+  </script>
+</body>
+</html>

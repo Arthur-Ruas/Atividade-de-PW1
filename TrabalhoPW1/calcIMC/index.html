@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cálculo IMC</title>
+  <link rel="stylesheet" href="../bootstrap.css">
+  <script defer src="../bootstrap.bundle.min.js"></script>
+
+  <style>
+    body{
+      overflow-y: hidden;
+      background-color: #eee;
+    }
+
+    .container{
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .imc{
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .imc input, #btn{
+      width: 50vmin;
+    }
+
+    #btn{
+      transition: 0.1s;
+      border-radius: 5px;
+      border: 0;
+      transition: 0.1s;
+    }
+
+    #btn:hover{
+      transform: scale(1.05);
+      transition: 0.1s;
+    }
+
+    #btn:active{
+      transform: scale(0.95);
+      transition: 0.1s;
+    }
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+          </li>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Definições
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="../defHtmlCssJS/htmlCssJS.html">HTML, CSS e JS</a></li>
+              <li><a class="dropdown-item" href="../defC/index.html">C#</a></li>
+              <li><a class="dropdown-item" href="../defApi/index.html">Api</a></li>
+              <li><a class="dropdown-item" href="../defMerDer/index.html">MER e Der</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dinâmicos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="../validDados/index.html">Validação de Dados</a></li>
+              <li><a class="dropdown-item" href="../calcJuros/index.html">Cálculo de Juros Compostos</a></li>
+              <li><a class="dropdown-item" href="../compPrecos/index.html">Composição de Preços</a></li>
+              <li><a class="dropdown-item" href="../darkLight/index.html">Modo Claro e Escuro</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Cálculo de IMC</h1>
+    <form class="imc">
+      <input class="form-control" id="peso" type="text" placeholder="Digite o seu Peso" required>
+      <input class="form-control" id="altura" type="text" placeholder="Digite sua Altura" required>
+      <button class="btn btn-primary" id="btn">Calcular</button>
+      <div>
+        <h5>Resultado:</h5>
+        <input class="form-control" id="result" type="text" readonly>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const altura = document.querySelector('#altura'),
+          peso = document.querySelector('#peso');
+    const btn = document.querySelector("#btn"),
+          output = document.querySelector("#result");
+
+    btn.addEventListener("click", () =>{
+      event.preventDefault();
+
+      if(altura.value == "" || peso.value == ""){
+
+        alert("Preencha os campos!");
+      }
+      else{
+
+        const imc = (peso.value / (altura.value **2)).toFixed(2) //Mostra 2 números após o ponto
+
+        if (imc <= 16.9) {
+          output.value = (`IMC de ${imc}, Muito abaixo do peso`);
+        } 
+
+        else if (imc == 17 || imc <= 18.9) {
+          output.value = (`IMC de ${imc}, Abaixo do peso`);
+        }
+
+        else if (imc == 19 || imc <= 26.9) {
+          output.value = (`IMC de ${imc}, Normal`);
+        }
+
+        else if (imc <= 27 || imc <= 31.9) {
+          output.value = (`IMC de ${imc}, Acima do peso`);
+        }
+
+        else if (imc >= 32) {
+          output.value = (`IMC de ${imc}, Obeso`);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

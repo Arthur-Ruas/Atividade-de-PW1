@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Composição de Preços</title>
+  <link rel="stylesheet" href="../bootstrap.css">
+  <script defer src="../bootstrap.bundle.min.js"></script>
+
+  <style>
+    body{
+      overflow-y: hidden;
+      background-color: #eee;
+    }
+
+    .container{
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .comp{
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .comp input, #btn{
+      width: 50vmin;
+    }
+
+    #btn{
+      transition: 0.1s;
+      border-radius: 5px;
+      border: 0;
+      transition: 0.1s;
+    }
+
+    #btn:hover{
+      transform: scale(1.05);
+      transition: 0.1s;
+    }
+
+    #btn:active{
+      transform: scale(0.95);
+      transition: 0.1s;
+    }
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+          </li>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Definições
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="../defHtmlCssJS/htmlCssJS.html">HTML, CSS e JS</a></li>
+              <li><a class="dropdown-item" href="../defC/index.html">C#</a></li>
+              <li><a class="dropdown-item" href="../defApi/index.html">Api</a></li>
+              <li><a class="dropdown-item" href="../defMerDer/index.html">MER e Der</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dinâmicos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="../validDados/index.html">Validação de Dados</a></li>
+              <li><a class="dropdown-item" href="../calcIMC/index.html">Cálculo de IMC</a></li>
+              <li><a class="dropdown-item" href="../calcJuros/index.html">Cálculo de Juros Compostos</a></li>
+              <li><a class="dropdown-item" href="../darkLight/index.html">Modo Claro e Escuro</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <h1>Composição de Preços</h1>
+    <form class="comp">
+      <input class="form-control" id="lucro" type="text" placeholder="Digite o seu percentual de margem de Lucro" required>
+      <input class="form-control" id="produ" type="text" placeholder="Digite o custo do Produto" required>
+      <input class="form-control" id="trans" type="text" placeholder="Digite o custo de Transporte" required>
+      <input class="form-control" id="armaz" type="text" placeholder="Digite o custo de Armazenagem" required>
+      <input class="form-control" id="comis" type="text" placeholder="Digite o custo de Comissão" required>
+      <button type="submit" id="btn" class="btn btn-primary">Calcular</button>
+      <div>
+        <h5>Resultado:</h5>
+        <input class="form-control" id="result" type="text" readonly>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const lucro = document.getElementById("lucro"),
+          produ = document.getElementById("produ"),
+          trans = document.getElementById("trans"),
+          armaz = document.getElementById("armaz"),
+          comis = document.getElementById("comis");
+    const btn = document.getElementById("btn"),
+          output = document.querySelector("#result");
+
+
+    btn.addEventListener("click", () =>{
+      event.preventDefault();
+
+      if(lucro.value == "" || produ.value == "",trans.value == "" || armaz.value == "",comis.value == ""){
+        alert("Preencha os campos!");
+      }
+
+
+      else{
+
+        let lucro1 = produ.value * (lucro.value/100);
+        let trans1 = produ.value * (trans.value/100);
+        let armaz1 = produ.value * (armaz.value/100);
+        let comis1 = produ.value * (comis.value/100);
+
+        let gastos = 1+lucro1 + trans1 + armaz1 + comis1;
+        let result = (produ.value * 1) + gastos;
+        output.value = result;
+      }
+    })
+  </script>
+
+</body>
+</html>

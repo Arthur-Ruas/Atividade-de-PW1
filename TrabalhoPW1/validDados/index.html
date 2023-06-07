@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validação de Dados</title>
+  <link rel="stylesheet" href="../bootstrap.css">
+  <script defer src="../bootstrap.bundle.min.js"></script>
+
+  <style>
+    body{
+      overflow-y: hidden;
+      background-color: #eee;
+    }
+
+    .container{
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 1%;
+      
+    }
+
+    .form{
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form input{
+      width: 50vmin;
+    }
+
+    select{
+      cursor: pointer;
+    }
+
+    button[type = submit]:hover{
+      transform: scale(1.05);
+      transition: 0.1s;
+    }
+
+    button[type = submit]:active{
+      transform: scale(0.95);
+      transition: 0.1s;
+    }
+
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+          </li>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Definições
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="../defHtmlCssJS/htmlCssJS.html">HTML, CSS e JS</a></li>
+              <li><a class="dropdown-item" href="../defC/index.html">C#</a></li>
+              <li><a class="dropdown-item" href="../defApi/index.html">Api</a></li>
+              <li><a class="dropdown-item" href="../defMerDer/index.html">MER e Der</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dinâmicos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="../calcIMC/index.html">Cálculo de IMC</a></li>
+              <li><a class="dropdown-item" href="../calcJuros/index.html">Cálculo de Juros Compostos</a></li>
+              <li><a class="dropdown-item" href="../compPrecos/index.html">Composição de Preços</a></li>
+              <li><a class="dropdown-item" href="../darkLight/index.html">Modo Claro e Escuro</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container">
+      <h1>Cadastro</h1>
+        <form class="form" method = "post">
+            
+            <input class="form-control" type="text" required placeholder="CPF">
+            <input class="form-control" type="text" required placeholder="Nome" >
+  
+            <select class="form-control" required>
+              <option value="-1" selected>Estado Civil</option>
+              <option value="solteiro">Solteiro(a)</option>
+              <option value="casado">Casado(a)</option>
+              <option value="divorciado">Divorciado(a)</option>
+              <option value="viuvo">Víuvo(a)</option>
+            </select>
+              
+            <input class="form-control" placeholder="Endereço">
+            <input class="form-control" placeholder="Bairro">
+            <input class="form-control" placeholder="CEP">
+            <input class="form-control" required placeholder="Cidade">
+            <input class="form-control" required placeholder="UF">
+            <input class="form-control" required placeholder="Telefone">
+            <input class="form-control" type="email" required placeholder="Email">
+  
+            <button class="btn btn-primary" type = "submit">Enviar</button>
+        </form>
+  </div>
+</body>
+</html>
